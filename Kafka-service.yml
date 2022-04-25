@@ -1,0 +1,37 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+ name: kafka
+ namespace: kafka
+ labels:
+  run: kafka
+spec:
+ clusterIP: None
+ ports:
+ - port: 9092
+   targetPort: 9092
+   protocol: TCP
+   
+ selector:
+  app: kafka
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+ name: kafka-lb
+ namespace: kafka
+ labels:
+  run: kafka
+spec:
+ ports:
+ - port: 9092
+   targetPort: 9092
+   protocol: TCP
+ type: LoadBalancer
+ # change your host ip here
+ loadBalancerIP: 129.114.25.142  
+ selector:
+  app: kafka
+                
