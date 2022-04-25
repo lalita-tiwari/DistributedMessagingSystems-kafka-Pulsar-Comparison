@@ -35,3 +35,14 @@ follow the below steps :
     kubectl apply -f kafka.yml
 ![Screen Shot 2022-04-25 at 2 24 32 PM](https://user-images.githubusercontent.com/83514861/165159727-5853d8a5-b533-42fc-b054-4a0491a62208.png)
 
+
+    - To create a kafka topic from inside a pod
+        kubectl exec -it kafka-deployment-6ffc7d5989-8dgw4 /bin/bash -n kafka (update your kafka pod id)
+        cd kafka/
+        bin/kafka-topics.sh --create --topic weather --bootstrap-server localhost:9092 
+    
+    
+    - To run the kafka consumer on host install below kafka-python package
+        pip3 install kafka-python
+        
+     
