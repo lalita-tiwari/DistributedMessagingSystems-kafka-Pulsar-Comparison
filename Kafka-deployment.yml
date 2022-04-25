@@ -1,0 +1,27 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+ name: kafka-deployment
+ namespace: kafka
+ labels:
+  app: kafka
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: kafka
+ template:
+  metadata:
+   labels:
+    app: kafka
+  spec:
+   containers:
+    - name: kafka
+      ports:
+       - containerPort: 9092
+      image: lalitatiwari/kafka:latest
+      env:
+      - name: zookeeper
+        value: "zookeeper:2181"
+      - name: advertised_listener
+        value: "129.114.25.142:31178"
