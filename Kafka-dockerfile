@@ -1,0 +1,20 @@
+# Kafka
+  
+FROM java:openjdk-8-jre
+
+ENV zookeeper=localhost:2181
+ENV advertised_listener=your.host.name:9092
+RUN  wget https://dlcdn.apache.org/kafka/3.1.0/kafka_2.13-3.1.0.tgz --no-check-certificate && \
+    tar -xvzf kafka_2.13-3.1.0.tgz  && \
+    sed -i /broker.id/d kafka_2.13-3.1.0/config/server.properties && \
+    cat kafka_2.13-3.1.0/config/server.properties
+
+ENTRYPOINT echo "YYYYYYYYYYYYYYYYYYYYYYYYYYYY >>>>>>>>>>>>>>>> $zookeeper" && \
+           sed -i s/localhost:2181/$zookeeper/g kafka_2.13-3.1.0/config/server.properties && \
+           echo "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" && \
+           cat kafka_2.13-3.1.0/config/server.properties && \
+           sed -i s/your.host.name:9092/$advertised_listener/g kafka_2.13-3.1.0/config/server.properties && \
+           sed -i s/#advertised.listeners/advertised.listeners/g kafka_2.13-3.1.0/config/server.properties && \
+           kafka_2.13-3.1.0/bin/kafka-server-start.sh kafka_2.13-3.1.0/config/server.properties
+
+EXPOSE 9092/tcp
