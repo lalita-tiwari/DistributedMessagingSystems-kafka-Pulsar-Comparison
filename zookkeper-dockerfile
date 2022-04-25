@@ -1,0 +1,10 @@
+# Zookeeper
+  
+FROM java:openjdk-8-jre
+RUN wget https://dlcdn.apache.org/kafka/3.1.0/kafka_2.13-3.1.0.tgz --no-check-certificate && \
+    tar -xvzf kafka_2.13-3.1.0.tgz
+
+ENTRYPOINT export KAFKA_OPTS="-Djava.net.preferIPv4Stack=True" && \
+           kafka_2.13-3.1.0/bin/zookeeper-server-start.sh kafka_2.13-3.1.0/config/zookeeper.properties
+
+EXPOSE 2181/tcp 2888/tcp 3888/tcp 8080/tcp
