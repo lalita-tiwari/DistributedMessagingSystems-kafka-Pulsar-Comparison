@@ -1,0 +1,40 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+ name: zookeeper-deployment
+ namespace: kafka
+ labels:
+  app: zookeeper
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: zookeeper
+ template:
+  metadata:
+   labels:
+    app: zookeeper
+  spec:
+   containers:
+    - name: zookeeper
+      ports:
+       - containerPort: 2181
+      image: lalitatiwari/zookeeper:latest
+---
+kind: Service
+apiVersion: v1
+metadata:
+ name: zookeeper
+ namespace: kafka
+ labels:
+  run: zookeeper
+spec:
+ ports:
+ - port: 2181
+   targetPort: 2181
+   protocol: TCP
+ type: LoadBalancer
+ # use your host ip here
+ loadBalancerIP: 129.114.25.142
+ selector:
+  app: zookeeper
