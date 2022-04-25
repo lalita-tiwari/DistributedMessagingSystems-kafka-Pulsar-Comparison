@@ -3,3 +3,35 @@
 ### This Directory contains code to comapre the two distributed messaging systems Apache Kafka and Apache Pulsar
 ### Testing is done on one single node kubernetes cluster on a private cloud instance by depoying the Kafka and Pulsar as pods
 
+## Deploying the Apache kafka and zookeeper as pods on Kubernetes using docker images
+follow the below steps :
+
+
+    - Login to your docker account to build and push the kafka and zookeeper images
+    docker login
+    
+    - Build the kafka docker image
+    docker build -f kafka-dockerfile -t lalitatiwari/kafka .
+    
+    - push the image
+     docker push lalitatiwari/kafka
+     
+    - Build the zookeeper docker image
+    docker build -f Dockerfile -t lalitatiwari/zookeeper .
+    
+    - push the image
+    docker push lalitatiwari/zookeeper
+   
+    - create kafka namespace
+    kubectl apply -f  kafka-namespace.yml 
+   
+    - deploy zookeeper
+     kubectl apply -f  zookeeper.yml
+    
+    - deploy kafka service
+    kubectl apply -f  kafka-service.yml
+   
+    - deploy kafka 
+    kubectl apply -f kafka.yml
+![Screen Shot 2022-04-25 at 2 24 32 PM](https://user-images.githubusercontent.com/83514861/165159727-5853d8a5-b533-42fc-b054-4a0491a62208.png)
+
