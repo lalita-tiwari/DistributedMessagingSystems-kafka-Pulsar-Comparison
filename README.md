@@ -45,4 +45,10 @@ follow the below steps :
     - To run the kafka consumer on host install below kafka-python package
         pip3 install kafka-python
         
+    - Run the producer-kafka.py from the client
+        python3 producer-kafka.py 
+        
+    - Run the consumer-kafka.py from the remote host where you have deployed your kafka 
+        python3 consumer-kafka.py 
+        
      
