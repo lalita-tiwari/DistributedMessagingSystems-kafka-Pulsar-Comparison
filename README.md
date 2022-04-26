@@ -42,7 +42,7 @@ follow the below steps :
         bin/kafka-topics.sh --create --topic weather --bootstrap-server localhost:9092 
     
     
-    - To run the kafka consumer on host install below kafka-python package
+    - To run the kafka install below kafka-python package
         pip3 install kafka-python
         
     - Run the producer-kafka.py from the client
@@ -51,4 +51,11 @@ follow the below steps :
     - Run the consumer-kafka.py from the remote host where you have deployed your kafka 
         python3 consumer-kafka.py 
         
+    - To run the pulsar producer from client install the below package
+        pip install pulsar-client==2.10.0
+        
+    - Run the producer-pulsar.py from the client
+       python3 producer-pulsar.py
+        
+   
      
