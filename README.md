@@ -62,9 +62,9 @@ follow the below steps :
 
  - Add Pulsar charts repo.
 
-    helm repo add apache https://pulsar.apache.org/charts
+        - helm repo add apache https://pulsar.apache.org/charts
 
-    helm repo update
+        - helm repo update
 
  - Clone the Pulsar Helm chart repository.
 
@@ -93,20 +93,18 @@ helm install \
 
 - Check the status of all pods.
 
-- kubectl get pods -n pulsar
+        - kubectl get pods -n pulsar
 
 - If all pods start up successfully, you can see that the STATUS is changed to Running or Completed.
 
-- Output
-
+        
 ![Screen Shot 2022-04-29 at 8 30 48 PM](https://user-images.githubusercontent.com/83514861/166085357-7d51db79-9706-4e27-903d-8c3c78fcc1d7.png)
 
 
 - Check the status of all services in the namespace pulsar.
 
-    kubectl get services -n pulsar
-    - Output
-
+        - kubectl get services -n pulsar
+       
 ![Screen Shot 2022-04-29 at 8 31 56 PM](https://user-images.githubusercontent.com/83514861/166085386-4fbe0c30-4b76-4e20-a13c-2ce26de837ce.png)
 
 ## steps to run pulsar client
@@ -117,6 +115,12 @@ helm install \
     -  Run the producer-pulsar.py from the client
        python3 producer-pulsar.py
 
-
+## steps to install Grafana
+    - docker pull grafana/grafana-oss
+    - docker run -d -p 3000:3000 --name grafana grafana/grafana-oss
+ 
+ ## steps to install prometheus for kafka
+    - check the prometheus-kafka.yaml file (update the kafka pods IP's [kubectl get pods -n kafka -o wide])
+     - docker run -d --name my-prometheus2 --mount type=bind,source=/home/cc/kafka/prometheus.yml,destination=/etc/prometheus/prometheus.yml --publish    published=9195,target=9090,protocol=tcp prom/prometheus
 
 
