@@ -44,6 +44,11 @@ follow the below steps :
         kubectl exec -it kafka-deployment-6ffc7d5989-8dgw4 /bin/bash -n kafka (update your kafka pod id)
         cd kafka/
         bin/kafka-topics.sh --create --topic weather --bootstrap-server localhost:9092 
+        
+        If you get error (java.net.BindException: Address already in use) while creating a topic from within a kafka pod,
+        use below commands:
+            - unset JMX_PORT
+            - unset KAFKA_OPTS
     
     
     - To run the kafka install below kafka-python package
