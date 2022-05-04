@@ -1,7 +1,20 @@
 # DistributedMessagingSystems-kafka-Pulsar-Comparison
 
 ### This Directory contains code to comapre the two distributed messaging systems Apache Kafka and Apache Pulsar
-### Testing is done on two node kubernetes cluster on gcp cloud instances by depoying the Kafka and Pulsar as pods.
+
+### To perform the comparison between Apache kafka and Apache Pulsar, the testing is done on three node Kubernetes cluster created on Google Cloud Platform (GCP) cloud.
+
+On first Kubernetes cluster node, three replicas of kafka are deployed as docker pods along with one zookeeper, Grafana and Prometheus pods. 
+
+On second Kubernetes cluster node, three replicas of each Pulsar bookie, Pulsar broker and zookeeper along with, Grafana and Prometheus are 
+deployed as docker pods.
+
+On third Kubernetes cluster node, to understand how these two MQs handle the high load data the clients for both kafka and pulsar deployed and running as docker pods. I’m running 5 publishers and 1 consumer pods for both kafka and pulsar. The client is using a weather APT data to send. 
+Clients for both kafka and pulsar using the exact same payload and disseminating with the same frequency. 
+
+### GitHub Link to the CLI Tool to install the Kubernetes cluster, it can save some time.
+https://github.com/lalita-tiwari/faas-cli-OpenFaas-OpenWhisk-ServerlessFrameworks-viaAnsiblePlaybooks.git
+
 
 ### Step 0: Prepare a Kubernetes cluster befor deploying Kafka and Pulsar
 
@@ -10,7 +23,8 @@
 follow the below steps :
 
 
-    - Login to your docker account to build and push the kafka and zookeeper images
+    - Login to your docker account to build and push the kafka and zookeeper images![Screen Shot 2022-05-04 at 12 47 47 AM](https://user-images.githubusercontent.com/83514861/166628624-d73c4d21-a244-47de-8df5-c0bc4d016d14.png)
+
     docker login
     
     - Build the kafka docker image
@@ -103,15 +117,13 @@ helm install \
 
 - If all pods start up successfully, you can see that the STATUS is changed to Running or Completed.
 
-        
-![Screen Shot 2022-04-29 at 8 30 48 PM](https://user-images.githubusercontent.com/83514861/166085357-7d51db79-9706-4e27-903d-8c3c78fcc1d7.png)
-
+![Screen Shot 2022-05-04 at 12 47 47 AM](https://user-images.githubusercontent.com/83514861/166628647-18bc4d4d-5221-4552-b29f-f4d4d7eaf549.png)
 
 - Check the status of all services in the namespace pulsar.
 
         - kubectl get services -n pulsar
-       
-![Screen Shot 2022-04-29 at 8 31 56 PM](https://user-images.githubusercontent.com/83514861/166085386-4fbe0c30-4b76-4e20-a13c-2ce26de837ce.png)
+  ![Screen Shot 2022-05-04 at 12 49 21 AM](https://user-images.githubusercontent.com/83514861/166628730-29f56be6-68ee-44d1-97d4-5c22fb22a6c1.png)
+
 
 ## steps to run pulsar client
 
