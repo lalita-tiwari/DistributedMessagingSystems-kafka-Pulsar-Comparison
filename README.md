@@ -2,7 +2,7 @@
 
 ### This Directory contains code to comapre the two distributed messaging systems Apache Kafka and Apache Pulsar
 
-### To perform the comparison between Apache kafka and Apache Pulsar, the testing is done on three node Kubernetes cluster created on Google Cloud Platform (GCP) cloud.
+### To perform the comparison between Apache kafka and Apache Pulsar, the testing is done on three seperate node Kubernetes cluster created on Google Cloud Platform (GCP) cloud.
 
 On first Kubernetes cluster node, three replicas of kafka are deployed as docker pods along with one zookeeper, Grafana and Prometheus pods. 
 
